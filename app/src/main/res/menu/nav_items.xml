@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_alarm"
+        android:icon="@drawable/alarm"
+        android:title="@string/item_alarm"/>
+    <item
+        android:id="@+id/item_heart"
+        android:icon="@drawable/heart"
+        android:title="@string/item_heart"/>
+    <item
+        android:id="@+id/item_plus"
+        android:icon="@drawable/add"
+        android:title="@string/item_plus"/>
+    <item
+        android:id="@+id/item_compass"
+        android:icon="@drawable/compass"
+        android:title="@string/item_compass"/>
+    <item
+        android:id="@+id/item_profile"
+        android:icon="@drawable/profile"
+        android:title="@string/item_profile"/>
+</menu>
