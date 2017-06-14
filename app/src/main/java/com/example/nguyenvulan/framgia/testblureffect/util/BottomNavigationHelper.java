@@ -1,4 +1,4 @@
-package com.example.nguyenvulan.framgia.testblureffect;
+package com.example.nguyenvulan.framgia.testblureffect.util;
 
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;

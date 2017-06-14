@@ -1,4 +1,4 @@
-package com.example.nguyenvulan.framgia.testblureffect;
+package com.example.nguyenvulan.framgia.testblureffect.activity;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -10,8 +10,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
+import com.example.nguyenvulan.framgia.testblureffect.util.BottomNavigationHelper;
+import com.example.nguyenvulan.framgia.testblureffect.R;
 import com.example.nguyenvulan.framgia.testblureffect.fragment.CommentFragment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
@@ -29,13 +30,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void init() {
         mBottomNav = (BottomNavigationView) findViewById(R.id.bottom_nav);
         BottomNavigationHelper.disableShiftMode(mBottomNav);
-        mBottomNav.setOnClickListener(this);
+        mBottomNav.setOnNavigationItemSelectedListener(this);
     }
 
     private void replaceFragment(Fragment fragment) {
         FragmentManager manager = getFragmentManager();
         FragmentTransaction fragmentTransaction = manager.beginTransaction();
-        fragmentTransaction.replace(R.id.layout_container, new CommentFragment());
+        fragmentTransaction.replace(R.id.layout_container, fragment);
         fragmentTransaction.commit();
     }
 
@@ -56,25 +57,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 switch (i) {
                     case 0:
                         otherItem.setIcon(ContextCompat.getDrawable(this, R.drawable.alarm));
-                        Toast.makeText(this,"0",Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
                         otherItem.setIcon(ContextCompat.getDrawable(this, R.drawable.heart));
-                        Toast.makeText(this,"1",Toast.LENGTH_SHORT).show();
                         break;
                     case 3:
                         otherItem.setIcon(ContextCompat.getDrawable(this, R.drawable.compass));
-                        Toast.makeText(this,"3",Toast.LENGTH_SHORT).show();
                         break;
                     case 4:
                         otherItem.setIcon(ContextCompat.getDrawable(this, R.drawable.profile));
-                        Toast.makeText(this,"4",Toast.LENGTH_SHORT).show();
                         break;
                 }
-
             }
-
         }
+        replaceFragment(new CommentFragment());
         return true;
     }
 }

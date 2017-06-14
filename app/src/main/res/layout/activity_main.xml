@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:background="@color/gray"
     android:gravity="bottom|center"
-    tools:context="com.example.nguyenvulan.framgia.testblureffect.MainActivity">
+    tools:context="com.example.nguyenvulan.framgia.testblureffect.activity.MainActivity">
 
     <FrameLayout
         android:id="@+id/layout_container"

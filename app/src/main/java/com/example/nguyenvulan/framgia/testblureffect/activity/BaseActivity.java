@@ -1,4 +1,4 @@
-package com.example.nguyenvulan.framgia.testblureffect;
+package com.example.nguyenvulan.framgia.testblureffect.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

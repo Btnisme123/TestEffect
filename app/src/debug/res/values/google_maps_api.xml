@@ -1,0 +1,21 @@
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=8D:FD:0D:92:83:D5:2D:F3:61:E9:03:E2:3E:E8:41:57:DE:10:E1:27%3Bcom.example.nguyenvulan.framgia.testblureffect.activity
+
+    You can also add your credentials to an existing key, using this line:
+    8D:FD:0D:92:83:D5:2D:F3:61:E9:03:E2:3E:E8:41:57:DE:10:E1:27;com.example.nguyenvulan.framgia.testblureffect.activity
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
+        AIzaSyB_dv68vjmLTgWdv8ScMMC3PwNdGZZKSUs
+    </string>
+</resources>
