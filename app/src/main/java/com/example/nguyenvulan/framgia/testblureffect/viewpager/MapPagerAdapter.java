@@ -1,7 +1,12 @@
 package com.example.nguyenvulan.framgia.testblureffect.viewpager;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -9,14 +14,34 @@ import android.view.View;
  */
 
 public class MapPagerAdapter extends PagerAdapter {
+    private Context mContext;
+
+    public MapPagerAdapter(Context context) {
+        mContext = context;
+    }
 
     @Override
     public int getCount() {
-        return 0;
+        return 5;
+    }
+
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        TextView textView = new TextView(mContext);
+        textView.setText("Item " + position);
+        textView.setGravity(Gravity.CENTER);
+        textView.setBackgroundColor(Color.BLACK);
+        container.addView(textView);
+        return container;
+    }
+
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        container.removeView((View) object);
     }
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return false;
+        return (view == object);
     }
 }
