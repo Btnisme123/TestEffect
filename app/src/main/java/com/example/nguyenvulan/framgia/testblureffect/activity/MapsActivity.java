@@ -1,35 +1,49 @@
 package com.example.nguyenvulan.framgia.testblureffect.activity;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
 
 import com.example.nguyenvulan.framgia.testblureffect.R;
-import com.example.nguyenvulan.framgia.testblureffect.data.CustomMarker;
-import com.example.nguyenvulan.framgia.testblureffect.data.FakeContainer;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.Marker;
 
-import java.util.HashMap;
-import java.util.List;
+import rx.Observable;
+
 
 public class MapsActivity extends FragmentActivity {
 
-    private GoogleMap mMap;
-    private ViewPager mViewPager;
-    private List<CustomMarker> mMarkers = FakeContainer.getCustomMarker();
-    private HashMap<Marker, CustomMarker> mList = new HashMap<>();
-    private Marker mPreviousMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-            .findFragmentById(R.id.map);
 
     }
 
+/*
+    public boolean isGrayScale(Bitmap myImage) {
+        boolean isGrayScaleImage = true;
+        int myHeight = myImage.getHeight();
+        int myWidth = myImage.getWidth();
 
+        for (int i = 0; i < myHeight; i++) {
+            for (int j = 0; j < myWidth; j++) {
+                int currentPixel = myImage.getPixel(i, j);
+
+            }
+        }
+    }
+
+
+    boolean isGrayScalePixel(int pixel){
+
+        int alpha = (pixel && 0xFF000000) >> 24;
+        int red   = (pixel && 0x00FF0000) >> 16;
+        int green = (pixel && 0x0000FF00) >> 8;
+        int blue  = (pixel && 0x000000FF);
+
+        if( 0 == alpha && red == green && green == blue ) return true;
+        else return false;
+
+    }
+    */
 }

@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,7 @@ import java.util.Map;
 public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, ViewPager.OnPageChangeListener {
     private MapView mMap;
     private ViewPager mViewPager;
-    private List<CustomMarker> mMarkers = FakeContainer.getCustomMarker();
+    private static List<CustomMarker> mMarkers = FakeContainer.getCustomMarker();
     private HashMap<Marker, CustomMarker> mList = new HashMap<>();
     private Marker mPreviousMarker;
     private View mView;
@@ -92,13 +93,21 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     @Override
     public boolean onMarkerClick(Marker marker) {
+        Log.e("marker 1 : ",""+marker.getId());
         CustomMarker customMarker = mList.get(marker);
-        changIconMarker(customMarker, marker);
+        changIconMarker(marker);
+        Log.e("marker 2: ",""+customMarker.getId());
         mViewPager.setCurrentItem(customMarker.getId());
+
+        for (Map.Entry<Marker, CustomMarker> entry : mList.entrySet()) {
+            if (customMarker.getLatLng().equals(entry.getValue().getLatLng())) {
+                Log.e("marker : "+marker.getId() ,"custom : "+customMarker.getId());
+            }
+        }
         return false;
     }
 
-    private void changIconMarker(CustomMarker customMarker, Marker marker) {
+    private void changIconMarker(Marker marker) {
         if (mPreviousMarker != null) {
             mPreviousMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon));
         }
@@ -113,6 +122,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     @Override
     public void onPageSelected(int position) {
+        Log.e("page position : ",""+position);
         changeMarkerPosition(position);
     }
 
@@ -140,15 +150,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     }
 
     private void changeMarkerPosition(int position) {
-        if (position >= 0 && position < mList.size()) {
+        if (position >=0 && position < mList.size()) {
             CustomMarker customMarker = mMarkers.get(position);
             for (Map.Entry<Marker, CustomMarker> entry : mList.entrySet()) {
                 if (customMarker.getLatLng().equals(entry.getValue().getLatLng())) {
-                    changIconMarker(customMarker, entry.getKey());
+                    changIconMarker(entry.getKey());
                     mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(customMarker.getLatLng(), 5));
                 }
             }
         }
-
     }
 }

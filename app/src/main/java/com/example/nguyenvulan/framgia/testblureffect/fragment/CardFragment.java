@@ -2,19 +2,19 @@ package com.example.nguyenvulan.framgia.testblureffect.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.nguyenvulan.framgia.testblureffect.R;
 import com.example.nguyenvulan.framgia.testblureffect.util.CardAdapter;
+import com.example.nguyenvulan.framgia.testblureffect.util.Constants;
 
 
 public class CardFragment extends Fragment {
@@ -41,14 +41,19 @@ public class CardFragment extends Fragment {
         cardView.setMaxCardElevation(cardView.getCardElevation() * CardAdapter.MAX_ELEVATION_FACTOR);
 
         TextView title = (TextView) view.findViewById(R.id.title);
-        Button button = (Button)view.findViewById(R.id.button);
+        Button button = (Button) view.findViewById(R.id.button);
 
         title.setText(String.format("Card %d", getArguments().getInt("position")));
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Button in Card " + getArguments().getInt("position")
-                        + "Clicked!", Toast.LENGTH_SHORT).show();
+                /*
+                Bundle bundle = new Bundle();
+                bundle.putInt(Constants.KEY_POSITION, getArguments().getInt("position"));
+                Intent intent = new Intent();
+                intent.putExtras(bundle);
+                startActivity(intent);
+                */
             }
         });
 

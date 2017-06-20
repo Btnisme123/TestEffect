@@ -22,10 +22,7 @@ public class CommentFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_comment, container, false);
-        mImageView = (ImageView) mView.findViewById(R.id.image_test);
-        Glide.with(getActivity()).load(R.drawable.sky)
-            .bitmapTransform(new BlurTransformation(getActivity()))
-            .into(mImageView);
+
 
         return mView;
     }
