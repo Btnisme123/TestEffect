@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +30,7 @@ import java.util.Map;
 public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, ViewPager.OnPageChangeListener {
     private MapView mMap;
     private ViewPager mViewPager;
-    private static List<CustomMarker> mMarkers = FakeContainer.getCustomMarker();
+    public static List<CustomMarker> sMarkers = FakeContainer.getCustomMarker();
     private HashMap<Marker, CustomMarker> mList = new HashMap<>();
     private Marker mPreviousMarker;
     private View mView;
@@ -56,13 +55,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     private void init() {
         CardFragmentPagerAdapter cardFragmentPagerAdapter =
-            new CardFragmentPagerAdapter(getFragmentManager(), dpToPixels(2, getActivity()), mMarkers.size());
+            new CardFragmentPagerAdapter(getFragmentManager(), dpToPixels(2, getActivity()), sMarkers.size());
         ShadowTransformer shadowTransformer = new ShadowTransformer(mViewPager, cardFragmentPagerAdapter);
         shadowTransformer.enableScaling(true);
         mViewPager.setAdapter(cardFragmentPagerAdapter);
         mViewPager.setPageTransformer(false, shadowTransformer);
         mViewPager.setOffscreenPageLimit(3);
-        for (CustomMarker customMarker : mMarkers) {
+        for (CustomMarker customMarker : sMarkers) {
             drawMarker(customMarker);
         }
         mViewPager.addOnPageChangeListener(this);
@@ -78,7 +77,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
         mList.put(marker, customMarker);
     }
 
-    public static float dpToPixels(int dp, Context context) {
+    private float dpToPixels(int dp, Context context) {
         return dp * (context.getResources().getDisplayMetrics().density);
     }
 
@@ -93,17 +92,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        Log.e("marker 1 : ",""+marker.getId());
         CustomMarker customMarker = mList.get(marker);
         changIconMarker(marker);
-        Log.e("marker 2: ",""+customMarker.getId());
         mViewPager.setCurrentItem(customMarker.getId());
-
-        for (Map.Entry<Marker, CustomMarker> entry : mList.entrySet()) {
-            if (customMarker.getLatLng().equals(entry.getValue().getLatLng())) {
-                Log.e("marker : "+marker.getId() ,"custom : "+customMarker.getId());
-            }
-        }
         return false;
     }
 
@@ -122,7 +113,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     @Override
     public void onPageSelected(int position) {
-        Log.e("page position : ",""+position);
         changeMarkerPosition(position);
     }
 
@@ -150,8 +140,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     }
 
     private void changeMarkerPosition(int position) {
-        if (position >=0 && position < mList.size()) {
-            CustomMarker customMarker = mMarkers.get(position);
+        if (position >= 0 && position < mList.size()) {
+            CustomMarker customMarker = sMarkers.get(position);
             for (Map.Entry<Marker, CustomMarker> entry : mList.entrySet()) {
                 if (customMarker.getLatLng().equals(entry.getValue().getLatLng())) {
                     changIconMarker(entry.getKey());

@@ -13,20 +13,17 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.nguyenvulan.framgia.testblureffect.R;
+import com.example.nguyenvulan.framgia.testblureffect.activity.DetailActivity;
 import com.example.nguyenvulan.framgia.testblureffect.util.CardAdapter;
-import com.example.nguyenvulan.framgia.testblureffect.util.Constants;
 
 
 public class CardFragment extends Fragment {
 
     private CardView cardView;
+    private int mPosition;
 
     public static Fragment getInstance(int position) {
         CardFragment f = new CardFragment();
-        Bundle args = new Bundle();
-        args.putInt("position", position);
-        f.setArguments(args);
-
         return f;
     }
 
@@ -42,22 +39,26 @@ public class CardFragment extends Fragment {
 
         TextView title = (TextView) view.findViewById(R.id.title);
         Button button = (Button) view.findViewById(R.id.button);
-
-        title.setText(String.format("Card %d", getArguments().getInt("position")));
+        TextView content = (TextView) view.findViewById(R.id.text_view);
+        title.setText(String.format("Card %d", getPosition()));
+        content.setText(MapFragment.sMarkers.get(getPosition()).getText());
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                Bundle bundle = new Bundle();
-                bundle.putInt(Constants.KEY_POSITION, getArguments().getInt("position"));
-                Intent intent = new Intent();
-                intent.putExtras(bundle);
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
                 startActivity(intent);
-                */
             }
         });
 
         return view;
+    }
+
+    public int getPosition() {
+        return mPosition;
+    }
+
+    public void setPosition(int position) {
+        mPosition = position;
     }
 
     public CardView getCardView() {

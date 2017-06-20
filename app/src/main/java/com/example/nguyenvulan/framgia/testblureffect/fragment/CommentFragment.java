@@ -7,10 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.example.nguyenvulan.framgia.testblureffect.R;
-
-import jp.wasabeef.glide.transformations.BlurTransformation;
 
 
 public class CommentFragment extends Fragment {
