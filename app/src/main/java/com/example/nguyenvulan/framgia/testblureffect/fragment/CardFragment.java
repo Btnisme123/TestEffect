@@ -2,10 +2,10 @@ package com.example.nguyenvulan.framgia.testblureffect.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.nguyenvulan.framgia.testblureffect.R;
-import com.example.nguyenvulan.framgia.testblureffect.activity.DetailActivity;
 import com.example.nguyenvulan.framgia.testblureffect.util.CardAdapter;
 
 
@@ -37,16 +36,18 @@ public class CardFragment extends Fragment {
         cardView = (CardView) view.findViewById(R.id.cardView);
         cardView.setMaxCardElevation(cardView.getCardElevation() * CardAdapter.MAX_ELEVATION_FACTOR);
 
-        TextView title = (TextView) view.findViewById(R.id.title);
-        Button button = (Button) view.findViewById(R.id.button);
+        TextView title = (TextView) view.findViewById(R.id.text_title);
+        Button button = (Button) view.findViewById(R.id.button_detail);
         TextView content = (TextView) view.findViewById(R.id.text_view);
         title.setText(String.format("Card %d", getPosition()));
         content.setText(MapFragment.sMarkers.get(getPosition()).getText());
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), DetailActivity.class);
-                startActivity(intent);
+                Log.e("position : " + getPosition(), "");
+                //Intent intent = new Intent(getActivity(), DetailActivity.class);
+                //startActivity(intent);
             }
         });
 

@@ -2,10 +2,10 @@ package com.example.nguyenvulan.framgia.testblureffect.util;
 
 
 import android.app.Fragment;
-
 import android.app.FragmentManager;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.ViewGroup;
 
 import com.example.nguyenvulan.framgia.testblureffect.fragment.CardFragment;
@@ -24,7 +24,10 @@ public class CardFragmentPagerAdapter extends FragmentStatePagerAdapter implemen
         this.baseElevation = baseElevation;
 
         for (int i = 0; i < size; i++) {
-            addCardFragment(new CardFragment());
+            CardFragment cardFragment = new CardFragment();
+            cardFragment.setPosition(i);
+            Log.e("position : ", "" + cardFragment.getPosition());
+            addCardFragment(cardFragment);
         }
     }
 
