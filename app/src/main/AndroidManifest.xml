@@ -3,7 +3,7 @@
           package="com.example.nguyenvulan.framgia.testblureffect">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="true"
@@ -27,13 +27,14 @@
             android:label="@string/title_activity_maps">
         </activity>
         <activity android:name=".splash.SplashActivity">
+
+        </activity>
+        <activity android:name=".termservice.TermActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-        <activity android:name=".termservice.TermActivity">
         </activity>
     </application>
 
