@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="viewModel"
-                  type="com.example.nguyenvulan.framgia.testblureffect.termservice.TermModel"/>
+        <variable
+            name="viewModel"
+                type="com.example.nguyenvulan.framgia.testblureffect.termservice.TermModel"/>
     </data>
 
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:id="@+id/activity_term"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="bottom"
         tools:context="com.example.nguyenvulan.framgia.testblureffect.termservice.TermActivity">
         <WebView android:id="@+id/web_view"
                  android:layout_width="match_parent"
                  android:layout_height="match_parent"
                  android:bindUrl="@{viewModel.WebUrl}"/>
-    </RelativeLayout>
+
+        <TextView
+            android:id="@+id/text_request"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_50"
+            android:background="@color/red"
+            android:text="Move to next screen"
+            android:onClick="@{(v)->viewModel.onNextScreenClicked(v)}"
+            android:layout_gravity="bottom"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_15"/>
+    </LinearLayout>
 
 </layout>
